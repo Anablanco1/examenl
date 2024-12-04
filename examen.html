@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Email</title>
+    <style>
+        body {
+        background-image: url(img/1.jpg);
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .form-container{
+            border-radius: 5px;
+            background-color: black;
+            color: aliceblue;
+            width: 700px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Email" required>
+            <span id="emailError" class="error"></span>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+
+            const emailField = document.getElementById("email");
+            const emailError = document.getElementById("emailError");
+            const emailValue = emailField.value.trim();
+
+            // Patrón de validación de email
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!emailPattern.test(emailValue)) {
+                emailError.textContent = "Por favor, ingrese un email válido.";
+            } else {
+                emailError.textContent = ""; // Limpiar errores
+                // Redirigir a otra página
+                window.location.href = "siguiente_pagina.html";
+            }
+        });
+    </script>
+    <h1>netflix</h1>
+</body>
+</html>
